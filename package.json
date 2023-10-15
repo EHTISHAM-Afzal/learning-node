@@ -1,0 +1,14 @@
+{
+  "name": "npmdir",
+  "version": "1.0.0",
+  "description": "This is for learning purpos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sham",
+  "license": "ISC",
+  "dependencies": {
+    "figlet": "^1.6.0"
+  }
+}
