@@ -9,6 +9,7 @@
   "author": "sham",
   "license": "ISC",
   "dependencies": {
-    "figlet": "^1.6.0"
+    "figlet": "^1.6.0",
+    "shamcalc": "^1.0.2"
   }
 }

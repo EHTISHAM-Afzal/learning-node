@@ -1,0 +1,1 @@
+console.log("this is another file which running with execsync")
