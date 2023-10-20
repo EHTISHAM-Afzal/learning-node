@@ -136,7 +136,7 @@ const deleteCourse = async (id) => {
 
 // CRUD operations
 
-saveCourse();
+// saveCourse();
 // getCourse()
 // updateCourse("65311d64f9436088fa4ef944")
 // deleteCourse("6531e0984425498ec8866813")
