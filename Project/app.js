@@ -1,7 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
-const catagoriesRouter = require("./routes/catagories")
-const mongoose = require('mongoose')
+const catagories = require("./routes/catagories")
+const students = require("./routes/students")
+const courses = require("./routes/courses")
+const mongoose = require('mongoose');
 
 
 mongoose
@@ -12,7 +14,9 @@ mongoose
 const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(catagoriesRouter);
+app.use("/api/catagories", catagories);
+app.use("/api/students", students);
+app.use("/api/courses", courses);
 
 
 app.listen("3002", () => {

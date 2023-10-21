@@ -1,81 +1,72 @@
 const express = require("express");
-const joi = require("joi");
-const mongoose = require("mongoose");
-
+const { Validation, Catagory } = require("../models/catagoryModel");
 const catagoriesRouter = express.Router();
 
-const catagorySchema = new mongoose.Schema({
-  name: { type: String, required: true, min: 3 },
-});
 
-const catagory = mongoose.model("catagory", catagorySchema);
-
-catagoriesRouter.get("/api/catagories", async (req, res) => {
-  await catagory
+catagoriesRouter.get("/", async (req, res) => {
+  await Catagory
     .find()
     .then((response) => res.send(response))
     .catch((err) =>
       res
         .status(400)
-        .send({ message: "Oops cant find the catagory", error: err })
+        .send({ message: "Oops cant find the Catagory", error: err.message })
     );
 });
 
-catagoriesRouter.get("/api/catagories/:name", async (req, res) => {
-  await catagory
+catagoriesRouter.get("/:name", async (req, res) => {
+  await Catagory
     .find({ name: req.params.name })
     .then((response) => res.send(response))
     .catch((err) =>
       res
         .status(400)
-        .send({ message: "Oops cant find the catagory", error: err.message })
+        .send({ message: "Oops cant find the Catagory", error: err.message })
     );
 });
 
-catagoriesRouter.post("/api/catagories", (req, res) => {
-  const Catagory = new catagory({
+catagoriesRouter.post("/", (req, res) => {
+  const catagory = new Catagory({
     name: req.body.name,
   });
-  const { error } = validationSchema.validate(req.body);
+  const { error } = Validation.validate(req.body);
   if (error) return res.status(400).send(error.message);
-  Catagory.save()
+  catagory.save()
     .then((r) => res.send(r))
     .catch((err) =>
       res.send({ message: "Oops cant save", error: err.message })
     );
 });
 
-catagoriesRouter.put("/api/catagories/:name", async (req, res) => {
-  const { error } = validationSchema.validate(req.body);
+catagoriesRouter.put("/:name", async (req, res) => {
+  const { error } = Validation.validate(req.body);
   if (error) return res.status(400).send(error.message);
-  await catagory
+  await Catagory
     .findOneAndUpdate({ name: req.params.name }, req.body, { new: true })
     .then((response) =>
       res.send({
-        message: "catagory updated the new data is ",
+        message: "Catagory updated the new data is ",
         response: response,
       })
     )
     .catch((err) =>
       res
         .status(400)
-        .send({ message: "Oops cant update the catagory", error: err.message })
+        .send({ message: "Oops cant update the Catagory", error: err.message })
     );
 });
 
-catagoriesRouter.delete("/api/catagories/:name", async (req, res) => {
-  await catagory
+catagoriesRouter.delete("/:name", async (req, res) => {
+  await Catagory
     .findOneAndDelete({ name: req.params.name })
     .then((response) => res.send(response))
     .catch((err) =>
       res
         .status(400)
-        .send({ message: "Oops cant delete the catagory", error: err.message })
+        .send({ message: "Oops cant delete the Catagory", error: err.message })
     );
 });
 
-const validationSchema = joi.object({
-  name: joi.string().min(3).required(),
-});
+
 
 module.exports = catagoriesRouter;
