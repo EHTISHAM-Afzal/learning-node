@@ -2,13 +2,13 @@ const joi = require("joi");
 const mongoose = require("mongoose");
 
 const studentSchema = new mongoose.Schema({
-  name: { type: String, min: 3, max: 20, trim: true },
+  name: { type: String, minlength : 3, maxlength: 20, trim: true },
   username: {
     type: String,
     unique: true,
     required: true,
-    min: 4,
-    max: 15,
+    minlength: 4,
+    maxlength: 15,
     lowercase: true,
   },
   isEnrolled: { type: Boolean, default: false, enum: [true, false] },

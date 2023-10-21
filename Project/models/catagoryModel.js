@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 
 const CatagorySchema = new mongoose.Schema({
-  name: { type: String, required: true, min: 3 },
+  name: { type: String, required: true, minlength: 3 },
 });
 
 const Catagory = mongoose.model("Catagory", CatagorySchema);
